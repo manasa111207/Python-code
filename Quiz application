@@ -1,0 +1,54 @@
+questions = [
+    {
+        "question": "Which language is used for Python programming?",
+        "options": ["A. Python", "B. HTML", "C. CSS", "D. SQL"],
+        "answer": "A"
+    },
+    {
+        "question": "What does CPU stand for?",
+        "options": [
+            "A. Computer Personal Unit",
+            "B. Central Processing Unit",
+            "C. Control Program Utility",
+            "D. Central Power Utility"
+        ],
+        "answer": "B"
+    },
+    {
+        "question": "Which data type stores True or False?",
+        "options": ["A. String", "B. List", "C. Boolean", "D. Float"],
+        "answer": "C"
+    },
+    {
+        "question": "Which symbol starts a Python comment?",
+        "options": ["A. //", "B. #", "C. <!--", "D. **"],
+        "answer": "B"
+    },
+    {
+        "question": "Which keyword defines a Python function?",
+        "options": ["A. function", "B. define", "C. def", "D. fun"],
+        "answer": "C"
+    }
+]
+
+score = 0
+
+print("Welcome to the Python Quiz!")
+
+for i, q in enumerate(questions, start=1):
+    print(f"\nQuestion {i}: {q['question']}")
+
+    for option in q["options"]:
+        print(option)
+
+    answer = input("Your answer: ").strip().upper()
+
+    if answer == q["answer"]:
+        print("Correct!")
+        score += 1
+    else:
+        print("Incorrect! Answer:", q["answer"])
+
+print("\n--- FINAL RESULT ---")
+print(f"Score: {score}/{len(questions)}")
+print(f"Percentage: {score / len(questions) * 100:.2f}%")
