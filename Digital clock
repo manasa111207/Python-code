@@ -1,0 +1,23 @@
+import tkinter as tk
+from time import strftime
+
+root = tk.Tk()
+root.title("Digital Clock")
+root.geometry("400x180")
+root.resizable(False, False)
+
+clock_label = tk.Label(
+    root,
+    font=("Arial", 35, "bold"),
+    bg="black",
+    fg="lime"
+)
+clock_label.pack(expand=True, fill="both")
+
+def update_clock():
+    current_time = strftime("%I:%M:%S %p")
+    clock_label.config(text=current_time)
+    root.after(1000, update_clock)
+
+update_clock()
+root.mainloop()
