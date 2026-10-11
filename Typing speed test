@@ -1,0 +1,35 @@
+import time
+import random
+
+sentences = [
+    "Python is easy to learn",
+    "Practice makes programming better",
+    "GitHub helps developers share code",
+    "Technology makes life easier"
+]
+
+sentence = random.choice(sentences)
+
+print("\nType this sentence:")
+print(sentence)
+
+input("Press Enter when you are ready...")
+start = time.time()
+
+typed = input("Start typing: ")
+
+end = time.time()
+elapsed = max(end - start, 0.01)
+
+words = len(typed.split())
+wpm = words / (elapsed / 60)
+
+correct = sum(
+    1 for a, b in zip(sentence, typed) if a == b
+)
+accuracy = correct / max(len(sentence), len(typed), 1) * 100
+
+print("\n--- RESULTS ---")
+print(f"Time: {elapsed:.2f} seconds")
+print(f"Typing Speed: {wpm:.2f} WPM")
+print(f"Character Accuracy: {accuracy:.2f}%")
