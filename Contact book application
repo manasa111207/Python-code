@@ -1,0 +1,61 @@
+import json
+from pathlib import Path
+
+FILE = Path("contacts.json")
+
+def load_contacts():
+    if FILE.exists():
+        try:
+            return json.loads(FILE.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            print("Could not read contacts file.")
+    return {}
+
+def save_contacts(contacts):
+    FILE.write_text(
+        json.dumps(contacts, indent=4),
+        encoding="utf-8"
+    )
+
+contacts = load_contacts()
+
+while True:
+    print("\n--- CONTACT BOOK ---")
+    print("1. Add Contact")
+    print("2. View Contacts")
+    print("3. Search Contact")
+    print("4. Exit")
+
+    choice = input("Choose an option: ")
+
+    if choice == "1":
+        name = input("Enter name: ").strip()
+        phone = input("Enter phone number: ").strip()
+
+        if name and phone:
+            contacts[name] = phone
+            save_contacts(contacts)
+            print("Contact saved!")
+        else:
+            print("Name and phone cannot be empty.")
+
+    elif choice == "2":
+        if not contacts:
+            print("No contacts available.")
+        else:
+            for name, phone in contacts.items():
+                print(name, ":", phone)
+
+    elif choice == "3":
+        name = input("Enter name to search: ").strip()
+        if name in contacts:
+            print("Phone:", contacts[name])
+        else:
+            print("Contact not found.")
+
+    elif choice == "4":
+        print("Goodbye!")
+        break
+
+    else:
+        print("Invalid choice.")
