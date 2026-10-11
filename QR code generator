@@ -1,0 +1,10 @@
+import qrcode
+
+text = input("Enter text or website URL: ")
+
+if text.strip():
+    qr = qrcode.make(text)
+    qr.save("my_qr_code.png")
+    print("QR code saved as my_qr_code.png")
+else:
+    print("Please enter some text.")
